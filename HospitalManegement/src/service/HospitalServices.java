@@ -123,7 +123,7 @@ public class HospitalServices {
 	
 		
 		
-		//read doctor details to add 
+	/*	//read doctor details to add 
 		@GET
 		@Path("/addDoctor")
 		@Produces(MediaType.TEXT_HTML)
@@ -170,5 +170,5 @@ public class HospitalServices {
 			 String output = doctor.deleteAddedDoctor(Hid,Mid);
 			return output;
 			}
-	
+*/	
 }
