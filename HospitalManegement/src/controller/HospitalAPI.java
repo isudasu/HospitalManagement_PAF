@@ -58,7 +58,7 @@ public class HospitalAPI extends HttpServlet {
 		String password = request.getParameter("password");
 
 		HospitalClass tb = new HospitalClass();
-		tb.setcompany(Hid);
+		//tb.setcompany(Hid);
 		tb.setcompany(companyName);
 		tb.setcontact(contact);
 		tb.setEmail(email);
@@ -89,7 +89,7 @@ public class HospitalAPI extends HttpServlet {
 		String password =paras.get("password").toString();
 		
 		HospitalClass tb = new HospitalClass();
-		tb.setcompany(Hid);
+		//tb.setcompany(Hid);
 		tb.setcompany(companyName);
 		tb.setcontact(contact);
 		tb.setEmail(email);
