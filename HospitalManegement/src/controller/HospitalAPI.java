@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.hospitalDetails;
 import model.HospitalClass;
-import service.HospitalServices;
+
 
 /**
  * Servlet implementation class HospitalAPI
@@ -79,7 +79,7 @@ public class HospitalAPI extends HttpServlet {
 			throws ServletException, IOException {
 		Map paras = getParasMap(request);
 		
-		String Hid =paras.get("Hid").toString();
+		String Hid =paras.get("hidItemIDSave").toString();
 		String companyName =paras.get("companyName").toString();
 		String contact =paras.get("contact").toString();
 		String email =paras.get("email").toString();

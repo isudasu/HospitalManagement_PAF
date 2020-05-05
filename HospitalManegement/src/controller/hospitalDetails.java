@@ -13,6 +13,63 @@ import util.DBConnection;
 
 public class hospitalDetails {
 
+	public String readHospital() {
+		String output = "";
+		
+		try {
+			Connection con = DBConnection.getconnection();
+			if (con == null) {
+				return "Error while connecting to the database for reading.";
+			}
+			
+			// Prepare the html table to be displayed
+			output = "<table border='1'><tr><th>Company Name</th>" + "<th>contact</th><th>email</th>"
+					+ "<th>Company Address</th><th>Services</th><th>User Name</th><th>Password</th>"
+					+ "<th>Update</th><th>Remove</th></tr>";
+			
+			String query = "select * from hospitalregister";
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				String Hid = Integer.toString(rs.getInt("Hid"));
+				String companyName = rs.getString("companyName");
+				String contact = Integer.toString(rs.getInt("contact"));
+				String email = rs.getString("email");
+				String address = rs.getString("address");
+				String services = rs.getString("services");
+				String userName = rs.getString("userName");
+				String password = rs.getString("password");
+				
+				//output += "<td>" + Hid + "</td>";
+				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + Hid + "'> "+ companyName + "</td>";
+				output += "<td>" + contact + "</td>";
+				output += "<td>" + email + "</td>";
+				output += "<td>" + address + "</td>";
+				output += "<td>" + services + "</td>";
+				output += "<td>" + userName + "</td>";
+				output += "<td>" + password + "</td>";
+				
+				// buttons
+				output +="<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
+						 + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-Hid='" + Hid + "'>" + "</td></tr>"; 
+			}
+			
+			con.close();
+			
+		output += "</table>";
+		
+		} catch (Exception e) {
+			
+			output = "Error while reading the details.";
+			System.err.println(e.getMessage());
+		}
+		
+		return output;
+	}
+	
 	public String insertHospital(HospitalClass table) {
 		String output = "";
 
@@ -54,8 +111,9 @@ public class hospitalDetails {
 			preparedStmt.execute();
 			con.close();
 
-			String newHospital = readHospital();
-			output = "{\"status\":\"success\", \"data\": \"" + newHospital + "\"}";
+			String newItems = readHospital();
+			
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";
 
 		} catch (Exception e) {
 
@@ -63,64 +121,6 @@ public class hospitalDetails {
 			System.err.println(e.getMessage());
 		}
 
-		return output;
-	}
-
-	public String readHospital() {
-		String output = "";
-		
-		try {
-			Connection con = DBConnection.getconnection();
-			if (con == null) {
-				return "Error while connecting to the database for reading.";
-			}
-			
-			// Prepare the html table to be displayed
-			output = "<table border=\"1\"><tr><th>Company Name</th>" + "<th>contact</th><th>email</th>"
-					+ "<th>Company Address</th><th>Services</th><th>User Name</th><th>Password</th>"
-					+ "<th>Update</th><th>Remove</th></tr>";
-			
-			String query = "select * from hospitalregister";
-			
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			
-			// iterate through the rows in the result set
-			while (rs.next()) {
-				String Hid = Integer.toString(rs.getInt("Hid"));
-				String companyName = rs.getString("companyName");
-				String contact = Integer.toString(rs.getInt("contact"));
-				String email = rs.getString("email");
-				String address = rs.getString("address");
-				String services = rs.getString("services");
-				String userName = rs.getString("userName");
-				String password = rs.getString("password");
-				
-				//output += "<td>" + Hid + "</td>";
-				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + Hid + "'> ";
-				output += "<tr><td>" + companyName + "</td>";
-				output += "<td>" + contact + "</td>";
-				output += "<td>" + email + "</td>";
-				output += "<td>" + address + "</td>";
-				output += "<td>" + services + "</td>";
-				output += "<td>" + userName + "</td>";
-				output += "<td>" + password + "</td>";
-				
-				// buttons
-				output +="<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
-						 + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-Hid='" + Hid + "'>" + "</td></tr>"; 
-			}
-			
-			con.close();
-			
-		output += "</table>";
-		
-		} catch (Exception e) {
-			
-			output = "Error while reading the details.";
-			System.err.println(e.getMessage());
-		}
-		
 		return output;
 	}
 

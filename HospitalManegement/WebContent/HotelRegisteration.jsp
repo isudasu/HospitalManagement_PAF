@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-6">
 				<h1>Hospital Registration</h1>
-				<form id="formHospital" name="formHospital">
+				<form id="formHospital" name="formHospital" method="post" action="HotelRegisteration.jsp">
 					
 					Company name : <input id="companyName" name="companyName" type="text" class="form-control form-control-sm"> <br> 
 					Contact : <input id="contact" name="contact" type="text" class="form-control form-control-sm"> <br> 

@@ -16,6 +16,7 @@ $(document).on("click", "#btnSave", function(event) {
 		$("#alertError").show();
 		return;
 	}
+	
 	// If valid------------------------
 	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 
@@ -24,18 +25,23 @@ $(document).on("click", "#btnSave", function(event) {
 		type : type,
 		data : $("#formHospital").serialize(),
 		dataType : "text",
-		complete : function(response, status) {
+		complete : function(response, status)
+		{
 			onItemSaveComplete(response.responseText, status);
 		}
 	});
 });
 function onItemSaveComplete(response, status) {
-	if (status == "success") {
+	if (status == "success") 
+	{
 		var resultSet = JSON.parse(response);
-		if (resultSet.status.trim() == "success") {
-			$("#alertSuccess").text("Successfully saved.");
-			$("#alertSuccess").show();
-			$("#divItemsGrid").html(resultSet.data);
+		
+		if (resultSet.status.trim() == "success")
+		 {
+		 $("#alertSuccess").text("Successfully saved.");
+		 $("#alertSuccess").show();
+		 $("#divItemsGrid").html(resultSet.data); 
+		 
 		} else if (resultSet.status.trim() == "error") {
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
@@ -106,11 +112,7 @@ if ($("#contact").val().trim() == "")
 	return "Insert your contact number!"; 
 } 
 
-var tmpPrice = $("#contact").val().trim(); 
-if (!$.isNumeric(tmpPrice)) 
-{  
-	return "Insert a numerical value for contact !";  
-	} 
+
  
 if ($("#email").val().trim() == "") 
 {  
