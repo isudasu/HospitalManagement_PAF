@@ -48,7 +48,7 @@ public class HospitalAPI extends HttpServlet {
 			throws ServletException, IOException {
 
 		
-		String Hid = request.getParameter("Hid");
+		//String Hid = request.getParameter("Hid");
 		String companyName = request.getParameter("companyName");
 		String contact = request.getParameter("contact");
 		String email = request.getParameter("email");

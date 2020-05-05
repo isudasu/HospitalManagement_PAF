@@ -48,8 +48,20 @@ function onItemSaveComplete(response, status) {
 		$("#alertError").show();
 	}
 	$("#hidItemIDSave").val("");
-	$("#formItem")[0].reset();
+	$("#formHospital")[0].reset();
 }
+
+//update=================
+$(document).on("click", ".btnUpdate", function(event) {  
+    $("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());  
+    $("#companyName").val($(this).closest("tr").find('td:eq(0)').text());    
+    $("#contact").val($(this).closest("tr").find('td:eq(1)').text());   
+    $("#email").val($(this).closest("tr").find('td:eq(2)').text());    
+    $("#address").val($(this).closest("tr").find('td:eq(3)').text()); 
+    $("#services").val($(this).closest("tr").find('td:eq(4)').text()); 
+    $("#userName").val($(this).closest("tr").find('td:eq(5)').text()); 
+    $("#password").val($(this).closest("tr").find('td:eq(6)').text()); 
+}); 
 
 $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
@@ -81,3 +93,48 @@ function onItemDeleteComplete(response, status) {
 		$("#alertError").show();
 	}
 }
+
+function validateItemForm() {  
+	 
+	if ($("#companyName").val().trim() == "") 
+	{  
+		return "Insert company name!"; 
+		} 
+
+if ($("#contact").val().trim() == "")  
+{  
+	return "Insert your contact number!"; 
+} 
+
+var tmpPrice = $("#contact").val().trim(); 
+if (!$.isNumeric(tmpPrice)) 
+{  
+	return "Insert a numerical value for contact !";  
+	} 
+ 
+if ($("#email").val().trim() == "") 
+{  
+	return "Insert your valied email!";  
+	} 
+ 
+if ($("#address").val().trim() == "") 
+{  
+	return "Insert your company address !";  
+	} 
+ 
+if ($("#services").val().trim() == "") 
+{  
+	return "Insert your company services !";  
+	} 
+if ($("#userName").val().trim() == "") 
+{  
+	return "Insert User name !";  
+	} 
+
+if ($("#password").val().trim() == "")  
+{   
+	return "Insert password !."; 
+	} 
+ 
+ return true;
+ }
