@@ -2,6 +2,7 @@ package model;
 
 public class HospitalClass {
 	
+	public String Hid; 
 	public String companyName; 
 	public String contact; 
 	public String email;
@@ -11,6 +12,13 @@ public class HospitalClass {
 	public String password;
 	
 
+	public String getid() {
+		return Hid;
+	}
+
+	public void setid(String Hid) {
+		this.Hid = Hid;
+	}
 	public String getcompany() {
 		return companyName;
 	}

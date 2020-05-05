@@ -56,11 +56,13 @@ public class hospitalDetails {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Inserted successfully";
+			String newHospital = readHospital(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newHospital + "\"}"; 
 			
 		} catch (Exception e) {
 			
-			output = "Error while inserting";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the data.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		
@@ -77,7 +79,7 @@ public class hospitalDetails {
 			}
 			
 			// Prepare the html table to be displayed
-			output = "<table border=\"1\"><tr><th>Company Name</th>" + "<th>contact</th><th>email</th>"
+			output = "<table border=\"1\"><tr><th>ID</th><th>Company Name</th>" + "<th>contact</th><th>email</th>"
 					+ "<th>Company Address</th><th>Services</th><th>User Name</th><th>Password</th>"
 					+ "<th>Update</th><th>Remove</th></tr>";
 			
@@ -97,6 +99,7 @@ public class hospitalDetails {
 				String userName = rs.getString("userName");
 				String password = rs.getString("password");
 				
+				output += "<td>" + Hid + "</td>";
 				output += "<tr><td>" + companyName + "</td>";
 				output += "<td>" + contact + "</td>";
 				output += "<td>" + email + "</td>";
@@ -165,11 +168,13 @@ public class hospitalDetails {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Updated successfully";
+			String newHospital = readHospital(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newHospital + "\"}"; 
 			
 		} catch (Exception e) {
 			
-			output = "Error while updating the details.";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the data.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		
@@ -196,11 +201,13 @@ public class hospitalDetails {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Deleted successfully";
+			String newHospital = readHospital(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					newHospital + "\"}"; 
 			
 		} catch (Exception e) {
 			
-			output = "Error while deleting the details.";
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the data.\"}"; 
 			System.err.println(e.getMessage());
 		}
 		
