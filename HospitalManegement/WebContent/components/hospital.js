@@ -73,7 +73,7 @@ $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
 		url : "HospitalAPI",
 		type : "DELETE",
-		data : "Hid=" + $(this).data("Hid"),
+		data : "Hid=" + $(this).data("hid"),
 		dataType : "text",
 		complete : function(response, status) {
 			onItemDeleteComplete(response.responseText, status);
