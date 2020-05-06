@@ -16,7 +16,7 @@ $(document).on("click", "#btnSave", function(event) {
 		$("#alertError").show();
 		return;
 	}
-	
+
 	// If valid------------------------
 	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 
@@ -25,23 +25,20 @@ $(document).on("click", "#btnSave", function(event) {
 		type : type,
 		data : $("#formHospital").serialize(),
 		dataType : "text",
-		complete : function(response, status)
-		{
+		complete : function(response, status) {
 			onItemSaveComplete(response.responseText, status);
 		}
 	});
 });
 function onItemSaveComplete(response, status) {
-	if (status == "success") 
-	{
+	if (status == "success") {
 		var resultSet = JSON.parse(response);
-		
-		if (resultSet.status.trim() == "success")
-		 {
-		 $("#alertSuccess").text("Successfully saved.");
-		 $("#alertSuccess").show();
-		 $("#divItemsGrid").html(resultSet.data); 
-		 
+
+		if (resultSet.status.trim() == "success") {
+			$("#alertSuccess").text("Successfully saved.");
+			$("#alertSuccess").show();
+			$("#divItemsGrid").html(resultSet.data);
+
 		} else if (resultSet.status.trim() == "error") {
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
@@ -57,17 +54,22 @@ function onItemSaveComplete(response, status) {
 	$("#formHospital")[0].reset();
 }
 
-//update=================
-$(document).on("click", ".btnUpdate", function(event) {  
-    $("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());  
-    $("#companyName").val($(this).closest("tr").find('td:eq(0)').text());    
-    $("#contact").val($(this).closest("tr").find('td:eq(1)').text());   
-    $("#email").val($(this).closest("tr").find('td:eq(2)').text());    
-    $("#address").val($(this).closest("tr").find('td:eq(3)').text()); 
-    $("#services").val($(this).closest("tr").find('td:eq(4)').text()); 
-    $("#userName").val($(this).closest("tr").find('td:eq(5)').text()); 
-    $("#password").val($(this).closest("tr").find('td:eq(6)').text()); 
-}); 
+// update=================
+$(document).on(
+		"click",
+		".btnUpdate",
+		function(event) {
+			$("#hidItemIDSave").val(
+					$(this).closest("tr").find('#hidItemIDUpdate').val());
+			$("#companyName")
+					.val($(this).closest("tr").find('td:eq(0)').text());
+			$("#contact").val($(this).closest("tr").find('td:eq(1)').text());
+			$("#email").val($(this).closest("tr").find('td:eq(2)').text());
+			$("#address").val($(this).closest("tr").find('td:eq(3)').text());
+			$("#services").val($(this).closest("tr").find('td:eq(4)').text());
+			$("#userName").val($(this).closest("tr").find('td:eq(5)').text());
+			$("#password").val($(this).closest("tr").find('td:eq(6)').text());
+		});
 
 $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
@@ -100,43 +102,44 @@ function onItemDeleteComplete(response, status) {
 	}
 }
 
-function validateItemForm() {  
-	 
-	if ($("#companyName").val().trim() == "") 
-	{  
-		return "Insert company name!"; 
-		} 
+function validateItemForm() {
 
-if ($("#contact").val().trim() == "")  
-{  
-	return "Insert your contact number!"; 
-} 
+	if ($("#companyName").val().trim() == "") {
+		return "Insert company name!";
+	}
 
+	if ($("#contact").val().trim() == "") {
+		return "Insert your contact number!";
+	}
+	var contactReg = /^\d{10}$/;
+	var tmpPhone = $("#contact").val().trim();
+	if (!tmpPhone.match(contactReg)) {
+		return "Insert a valid Phone Number...!";
+	}
 
- 
-if ($("#email").val().trim() == "") 
-{  
-	return "Insert your valied email!";  
-	} 
- 
-if ($("#address").val().trim() == "") 
-{  
-	return "Insert your company address !";  
-	} 
- 
-if ($("#services").val().trim() == "") 
-{  
-	return "Insert your company services !";  
-	} 
-if ($("#userName").val().trim() == "") 
-{  
-	return "Insert User name !";  
-	} 
+	if ($("#email").val().trim() == "") {
+		return "Insert your  email!";
+	}
+	var emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var tmpEmail = $("#email").val().trim();
+	if (!tmpEmail.match(emailReg)) {
+		return "Insert a valid Email...!";
+	}
 
-if ($("#password").val().trim() == "")  
-{   
-	return "Insert password !."; 
-	} 
- 
- return true;
- }
+	if ($("#address").val().trim() == "") {
+		return "Insert your company address !";
+	}
+
+	if ($("#services").val().trim() == "") {
+		return "Insert your company services !";
+	}
+	if ($("#userName").val().trim() == "") {
+		return "Insert User name !";
+	}
+
+	if ($("#password").val().trim() == "") {
+		return "Insert password !.";
+	}
+
+	return true;
+}
