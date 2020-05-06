@@ -35,6 +35,7 @@ public class hospitalDetails {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				String Hid = Integer.toString(rs.getInt("Hid"));
+				//int Hid =rs.getInt("Hid");
 				String companyName = rs.getString("companyName");
 				String contact = Integer.toString(rs.getInt("contact"));
 				String email = rs.getString("email");
@@ -155,12 +156,12 @@ public class hospitalDetails {
 
 			preparedStmt.setString(1, company);
 			preparedStmt.setInt(2, Integer.parseInt(contact));
-			preparedStmt.setString(2, email);
-			preparedStmt.setString(3, address);
-			preparedStmt.setString(4, service);
-			preparedStmt.setString(5, uName);
-			preparedStmt.setString(6, password);
-			preparedStmt.setInt(7, Integer.parseInt(hid));
+			preparedStmt.setString(3, email);
+			preparedStmt.setString(4, address);
+			preparedStmt.setString(5, service);
+			preparedStmt.setString(6, uName);
+			preparedStmt.setString(7, password);
+			preparedStmt.setInt(8, Integer.parseInt(hid));
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
@@ -170,7 +171,7 @@ public class hospitalDetails {
 
 		} catch (Exception e) {
 
-			output = "{\"status\":\"error\", \"data\": \"Error while inserting the data.\"}";
+			output = "{\"status\":\"error\", \"data\": \"Error while updating the data.\"}";
 			System.err.println(e.getMessage());
 		}
 
@@ -202,7 +203,7 @@ public class hospitalDetails {
 
 		} catch (Exception e) {
 
-			output = "{\"status\":\"error\", \"data\": \"Error while inserting the data.\"}";
+			output = "{\"status\":\"error\", \"data\": \"Error while deleting the data.\"}";
 			System.err.println(e.getMessage());
 		}
 

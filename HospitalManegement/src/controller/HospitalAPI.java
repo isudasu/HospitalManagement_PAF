@@ -110,7 +110,9 @@ public class HospitalAPI extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		Map paras = getParasMap(request);
+		
 		String output = hospital.deleteHospital(paras.get("Hid").toString());
 		response.getWriter().write(output);
 	}
